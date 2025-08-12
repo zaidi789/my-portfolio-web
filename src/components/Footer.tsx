@@ -9,10 +9,10 @@ const Footer = () => {
   const pathname = usePathname();
 
   const socialLinks = [
-    { icon: Github, href: "https://github.com/zaidrafiq", label: "GitHub" },
+    { icon: Github, href: "https://github.com/zaidi789", label: "GitHub" },
     {
       icon: Linkedin,
-      href: "https://www.linkedin.com/in/zaidrafiq",
+      href: "https://www.linkedin.com/in/zaid-rafiq-a6132128a/",
       label: "LinkedIn",
     },
     { icon: Mail, href: "mailto:zaidrafiq11@gmail.com", label: "Email" },
