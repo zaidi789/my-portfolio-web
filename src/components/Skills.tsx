@@ -51,12 +51,6 @@ const Skills = () => {
       color: "from-purple-500 to-pink-500",
     },
     {
-      name: "Redux",
-      category: "State Management",
-      icon: "/icons/redux.png",
-      color: "from-purple-500 to-pink-500",
-    },
-    {
       name: "Context API",
       category: "State Management",
       icon: "/icons/react.png",
@@ -103,13 +97,13 @@ const Skills = () => {
     {
       name: "Adapty",
       category: "Backend & APIs",
-      icon: "/icons/graphql.png",
+      icon: "/icons/adapty.png",
       color: "from-blue-500 to-cyan-500",
     },
     {
       name: "Adyen",
       category: "Backend & APIs",
-      icon: "/icons/rest.png",
+      icon: "/icons/adyen.png",
       color: "from-orange-500 to-red-500",
     },
 

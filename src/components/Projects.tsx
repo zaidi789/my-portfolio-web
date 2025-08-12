@@ -58,7 +58,7 @@ const Projects = () => {
       title: "Pixsy - AI Image Generation",
       description:
         "Advanced AI image generation app featuring payment integration with Adapty, predefined templates using Supabase Edge Functions, ReplicateAI integration for high-quality image generation, image-to-video conversion using Google Veo3, and complete generation management system for users to track and organize their AI creations.",
-      image: "/projects/ferd.png",
+      image: "/projects/pixsy.png",
       type: "React Native AI Platform",
       icon: Smartphone,
       technologies: [
@@ -94,7 +94,7 @@ const Projects = () => {
       title: "Flipsy - Card Flip Game",
       description:
         "React Native card flip memory game featuring multiple difficulty levels, diverse card themes, AdMob integration for monetization, and engaging gameplay mechanics. A perfect example of React Native game development with smooth animations, progressive difficulty, and multiple visual themes for enhanced user experience.",
-      image: "/projects/futuresoul.png",
+      image: "/projects/flipsy.png",
       type: "React Native Game App",
       icon: Smartphone,
       technologies: [
@@ -131,7 +131,7 @@ const Projects = () => {
       title: "STYLEY - AI Image Generation App",
       description:
         "A comprehensive AI-powered lifestyle platform featuring 100+ image generation templates, AI chatbot with multiple models, real-time chat using Supabase, payment integration with Supawal, Zillow property integration with complete map functionality, fashion AI for virtual clothing try-ons, and AI-powered virtual room decoration and staging capabilities. Led a team of 7 developers as Lead React Native Developer.",
-      image: "/projects/ferd.png",
+      image: "/projects/styley.png",
       type: "React Native AI Lifestyle Platform",
       icon: Smartphone,
       technologies: [
@@ -205,7 +205,7 @@ const Projects = () => {
       title: "Sajam Gast - Event Management System",
       description:
         "Comprehensive event management system featuring 3 specialized apps: Sajam Gast Organizer (complete event planning, visitor management, QR code generation), Sajam Gast Exhibitor (booth management, visitor tracking, QR scanning for person identification and verification), and Sajam Gast Visitor (registration, QR codes, event access). Includes QR scanning for person identification, visitor list management with Excel downloads, and complete event lifecycle management.",
-      image: "/projects/ffc.png",
+      image: "/projects/sajamgast.png",
       type: "React Native Event Management Suite",
       icon: Smartphone,
       technologies: [
