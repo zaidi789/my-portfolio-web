@@ -117,7 +117,7 @@ const Hero = () => {
                 {[
                   {
                     icon: Github,
-                    href: "https://github.com/zaidrafiq",
+                    href: "https://github.com/zaidi789",
                     label: "GitHub",
                   },
                   {
