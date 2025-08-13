@@ -174,13 +174,13 @@ const Skills = () => {
       name: "Next.js",
       category: "Web Development & Hosting",
       icon: "/icons/next_js.png",
-      color: "from-black to-gray-700",
+      color: "from-gray-800 to-black",
     },
     {
       name: "Vercel",
       category: "Web Development & Hosting",
       icon: "/icons/vercel.png",
-      color: "from-black to-gray-800",
+      color: "from-gray-900 to-black",
     },
     {
       name: "Web Hosting",
@@ -311,10 +311,10 @@ const Skills = () => {
                       <Card className="relative overflow-hidden p-6 h-28 flex flex-col items-center justify-center text-center hover:shadow-2xl transition-all duration-300 border-2 hover:border-primary/20">
                         {/* Animated background gradient */}
                         <motion.div
-                          className={`absolute inset-0 bg-gradient-to-br ${skill.color} opacity-0 group-hover:opacity-10 transition-opacity duration-300`}
+                          className={`absolute inset-0 bg-gradient-to-br ${skill.color} opacity-0 group-hover:opacity-20 transition-opacity duration-300`}
                           initial={false}
                           animate={{ opacity: 0 }}
-                          whileHover={{ opacity: 0.1 }}
+                          whileHover={{ opacity: 0.2 }}
                         />
 
                         {/* Floating animation for icon */}

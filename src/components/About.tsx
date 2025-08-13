@@ -150,7 +150,7 @@ const About = () => {
                   "Backend & APIs": "text-purple",
                   "State Management": "text-teal",
                   "Tools & Platforms": "text-orange",
-                  "Web Development & Hosting": "text-indigo",
+                  "Web Development & Hosting": "text-green",
                 };
                 const colorClass =
                   categoryColors[category as keyof typeof categoryColors] ||
@@ -168,25 +168,75 @@ const About = () => {
                         {category}
                       </h4>
                       <div className="flex flex-wrap gap-2">
-                        {technologies.map((tech, techIndex) => (
-                          <motion.div
-                            key={tech}
-                            initial={{ opacity: 0, scale: 0.8 }}
-                            animate={inView ? { opacity: 1, scale: 1 } : {}}
-                            transition={{
-                              delay: 0.8 + index * 0.1 + techIndex * 0.05,
-                              duration: 0.4,
-                            }}
-                            whileHover={{ scale: 1.05 }}
-                          >
-                            <Badge
-                              variant="secondary"
-                              className="hover:bg-primary hover:text-primary-foreground transition-all duration-300"
+                        {technologies.map((tech, techIndex) => {
+                          // Random colors for hover effects
+                          const randomColors = [
+                            "from-blue-500 to-purple-500",
+                            "from-green-500 to-teal-500",
+                            "from-orange-500 to-red-500",
+                            "from-pink-500 to-purple-500",
+                            "from-yellow-500 to-orange-500",
+                            "from-indigo-500 to-blue-500",
+                            "from-red-500 to-pink-500",
+                            "from-teal-500 to-green-500",
+                          ];
+                          const randomColor =
+                            randomColors[techIndex % randomColors.length];
+
+                          return (
+                            <motion.div
+                              key={tech}
+                              initial={{ opacity: 0, scale: 0.8 }}
+                              animate={inView ? { opacity: 1, scale: 1 } : {}}
+                              transition={{
+                                delay: 0.8 + index * 0.1 + techIndex * 0.05,
+                                duration: 0.4,
+                              }}
+                              whileHover={{
+                                scale: 1.1,
+                                rotate: [0, -5, 5, 0],
+                                y: -5,
+                              }}
+                              className="group"
                             >
-                              {tech}
-                            </Badge>
-                          </motion.div>
-                        ))}
+                              <Badge
+                                variant="secondary"
+                                className="relative overflow-hidden cursor-pointer transition-all duration-300 hover:shadow-lg hover:shadow-primary/25"
+                              >
+                                <span className="relative z-10 group-hover:text-white transition-colors duration-300">
+                                  {tech}
+                                </span>
+
+                                {/* Animated background gradient */}
+                                <motion.div
+                                  className={`absolute inset-0 bg-gradient-to-br ${randomColor} opacity-0 group-hover:opacity-100 transition-all duration-500`}
+                                  initial={false}
+                                  whileHover={{
+                                    opacity: 1,
+                                    scale: [1, 1.1, 1],
+                                  }}
+                                  transition={{ duration: 0.5 }}
+                                />
+
+                                {/* Floating particles effect */}
+                                <motion.div
+                                  className="absolute inset-0 pointer-events-none"
+                                  initial={false}
+                                  whileHover={{
+                                    background: `radial-gradient(circle at 20% 80%, ${
+                                      randomColor.split(" ")[1]
+                                    } 0%, transparent 50%),
+                                                radial-gradient(circle at 80% 20%, ${
+                                                  randomColor.split(" ")[0]
+                                                } 0%, transparent 50%)`,
+                                    opacity: [0, 0.3, 0],
+                                  }}
+                                  transition={{ duration: 1, repeat: Infinity }}
+                                />
+                              </Badge>
+                            </motion.div>
+                          );
+                        })}
                       </div>
                     </Card>
                   </motion.div>
