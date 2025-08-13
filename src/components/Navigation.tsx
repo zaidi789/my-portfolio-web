@@ -11,9 +11,16 @@ const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("");
-  const { theme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+  const themeContext = useTheme();
+  const theme = themeContext?.theme || "light";
+  const setTheme = themeContext?.setTheme || (() => {});
   const router = useRouter();
   const pathname = usePathname();
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const navItems = [
     { label: "Home", href: "/#home" },
@@ -66,6 +73,10 @@ const Navigation = () => {
     }
     setIsMobileMenuOpen(false);
   };
+
+  if (!mounted) {
+    return null;
+  }
 
   return (
     <>

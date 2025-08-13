@@ -1,8 +1,27 @@
 "use client";
-import { useEffect } from "react";
-import Navigation from "@/src/components/Navigation";
-import Projects from "@/src/components/Projects";
-import Footer from "@/src/components/Footer";
+import { useEffect, Suspense } from "react";
+import dynamic from "next/dynamic";
+import ClientOnly from "@/src/components/ClientOnly";
+
+// Dynamically import components to prevent SSR issues
+const Navigation = dynamic(() => import("@/src/components/Navigation"), {
+  ssr: false,
+  loading: () => <div className="h-16 md:h-20" />,
+});
+
+const Projects = dynamic(() => import("@/src/components/Projects"), {
+  ssr: false,
+  loading: () => (
+    <div className="min-h-screen flex items-center justify-center">
+      Loading...
+    </div>
+  ),
+});
+
+const Footer = dynamic(() => import("@/src/components/Footer"), {
+  ssr: false,
+  loading: () => <div className="h-20" />,
+});
 
 const Index = () => {
   useEffect(() => {
@@ -20,15 +39,21 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
-      <Navigation />
+      <ClientOnly fallback={<div className="h-16 md:h-20" />}>
+        <Navigation />
+      </ClientOnly>
 
       <main>
         <section id="projects">
-          <Projects />
+          <ClientOnly>
+            <Projects />
+          </ClientOnly>
         </section>
       </main>
 
-      <Footer />
+      <ClientOnly>
+        <Footer />
+      </ClientOnly>
     </div>
   );
 };

@@ -26,14 +26,26 @@ export function ThemeWrapper({ children }: { children: React.ReactNode }) {
     }
   }, []);
 
-  return (
-    <ThemeProvider
-      attribute="class"
-      defaultTheme="light"
-      enableSystem={false}
-      disableTransitionOnChange={false}
-    >
-      {children}
-    </ThemeProvider>
-  );
+  // Prevent hydration mismatch by not rendering until mounted
+  if (!mounted) {
+    return <div className="light">{children}</div>;
+  }
+
+  try {
+    return (
+      <ThemeProvider
+        attribute="class"
+        defaultTheme="light"
+        enableSystem={false}
+        disableTransitionOnChange={false}
+        storageKey="theme"
+      >
+        {children}
+      </ThemeProvider>
+    );
+  } catch (error) {
+    // Fallback if ThemeProvider fails
+    console.warn("ThemeProvider failed, using fallback:", error);
+    return <div className="light">{children}</div>;
+  }
 }

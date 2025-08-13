@@ -1,11 +1,18 @@
 "use client";
 import { useTheme } from "next-themes";
 import { Toaster as Sonner, toast } from "sonner";
+import { useEffect, useState } from "react";
 
 type ToasterProps = React.ComponentProps<typeof Sonner>;
 
 const Toaster = ({ ...props }: ToasterProps) => {
-  const { theme = "system" } = useTheme();
+  const [mounted, setMounted] = useState(false);
+  const themeContext = useTheme();
+  const theme = mounted ? themeContext?.theme || "light" : "light";
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   return (
     <Sonner
