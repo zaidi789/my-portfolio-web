@@ -149,7 +149,7 @@ const Contact = () => {
     {
       icon: Linkedin,
       label: "LinkedIn",
-      href: "https://www.linkedin.com/in/zaidrafiq",
+      href: "https://www.linkedin.com/in/zaid-rafiq-a6132128a/",
       color: "hover:text-blue-400",
     },
   ];

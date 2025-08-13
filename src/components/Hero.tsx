@@ -122,7 +122,7 @@ const Hero = () => {
                   },
                   {
                     icon: Linkedin,
-                    href: "https://www.linkedin.com/in/zaidrafiq",
+                    href: "https://www.linkedin.com/in/zaid-rafiq-a6132128a/",
                     label: "LinkedIn",
                   },
                 ].map(({ icon: Icon, href, label }) => (
