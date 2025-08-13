@@ -83,7 +83,6 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       </div>
     `;
 
-    // Send email to yourself
     await sendMail({
       to: "zaidrafiq11@gmail.com", // Your email
       subject: `Portfolio Contact: ${subject}`,
