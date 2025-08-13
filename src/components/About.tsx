@@ -201,18 +201,18 @@ const About = () => {
                             >
                               <Badge
                                 variant="secondary"
-                                className="relative overflow-hidden cursor-pointer transition-all duration-300 hover:shadow-lg hover:shadow-primary/25"
+                                className="relative overflow-hidden cursor-pointer transition-all duration-300 hover:shadow-lg hover:shadow-primary/25 bg-background/80 dark:bg-background/40 border border-border/50"
                               >
-                                <span className="relative z-10 group-hover:text-white transition-colors duration-300">
+                                <span className="relative z-10 text-foreground group-hover:text-black dark:group-hover:text-white transition-colors duration-300">
                                   {tech}
                                 </span>
 
                                 {/* Animated background gradient */}
                                 <motion.div
-                                  className={`absolute inset-0 bg-gradient-to-br ${randomColor} opacity-0 group-hover:opacity-100 transition-all duration-500`}
+                                  className={`absolute inset-0 bg-gradient-to-br ${randomColor} opacity-0 group-hover:opacity-70 dark:group-hover:opacity-100 transition-all duration-500`}
                                   initial={false}
                                   whileHover={{
-                                    opacity: 1,
+                                    opacity: 0.7,
                                     scale: [1, 1.1, 1],
                                   }}
                                   transition={{ duration: 0.5 }}
@@ -229,7 +229,7 @@ const About = () => {
                                                 radial-gradient(circle at 80% 20%, ${
                                                   randomColor.split(" ")[0]
                                                 } 0%, transparent 50%)`,
-                                    opacity: [0, 0.3, 0],
+                                    opacity: [0, 0.2, 0],
                                   }}
                                   transition={{ duration: 1, repeat: Infinity }}
                                 />
