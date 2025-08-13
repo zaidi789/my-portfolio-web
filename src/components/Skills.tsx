@@ -170,6 +170,30 @@ const Skills = () => {
       icon: "/icons/xcode.png",
       color: "from-blue-500 to-blue-700",
     },
+    {
+      name: "Next.js",
+      category: "Web Development & Hosting",
+      icon: "/icons/next_js.png",
+      color: "from-black to-gray-700",
+    },
+    {
+      name: "Vercel",
+      category: "Web Development & Hosting",
+      icon: "/icons/vercel.png",
+      color: "from-black to-gray-800",
+    },
+    {
+      name: "Web Hosting",
+      category: "Web Development & Hosting",
+      icon: "/icons/aws.png",
+      color: "from-orange-500 to-yellow-500",
+    },
+    {
+      name: "Deployment",
+      category: "Web Development & Hosting",
+      icon: "/icons/ci_cd.png",
+      color: "from-green-500 to-blue-500",
+    },
   ];
 
   const categories = [
@@ -178,6 +202,7 @@ const Skills = () => {
     "Backend & APIs",
     "Database",
     "Tools & Platforms",
+    "Web Development & Hosting",
   ];
 
   const containerVariants = {

@@ -34,6 +34,12 @@ const About = () => {
       "Realm",
     ],
     "Tools & Platforms": ["Git", "Bitbucket", "Jira", "CI/CD", "VS Code"],
+    "Web Development & Hosting": [
+      "Next.js",
+      "Vercel",
+      "Web Hosting",
+      "Deployment",
+    ],
   };
 
   return (
@@ -144,6 +150,7 @@ const About = () => {
                   "Backend & APIs": "text-purple",
                   "State Management": "text-teal",
                   "Tools & Platforms": "text-orange",
+                  "Web Development & Hosting": "text-indigo",
                 };
                 const colorClass =
                   categoryColors[category as keyof typeof categoryColors] ||
