@@ -243,9 +243,9 @@ const Skills = () => {
   return (
     <section
       id="skills"
-      className="py-24 px-6 bg-gradient-to-br from-background via-muted/20 to-background"
+      className="py-24 bg-gradient-to-br from-background via-muted/20 to-background"
     >
-      <div className="max-w-7xl mx-auto">
+      <div className="site-width">
         <motion.div
           ref={ref}
           initial={{ opacity: 0, y: 30 }}

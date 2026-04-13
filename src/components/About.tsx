@@ -11,10 +11,10 @@ const About = () => {
   });
 
   const stats = [
-    { label: "Years Experience", value: "3+", icon: Award },
-    { label: "Projects Completed", value: "15+", icon: Code },
-    { label: "Mobile Apps", value: "12+", icon: Smartphone },
-    { label: "Cross-Platform", value: "100%", icon: Cloud },
+    { label: "Years experience", value: "4+", icon: Award },
+    { label: "Shipped products", value: "12+", icon: Code },
+    { label: "App surfaces", value: "25+", icon: Smartphone },
+    { label: "Platforms", value: "iOS · Android", icon: Cloud },
   ];
 
   const techStack = {
@@ -34,17 +34,18 @@ const About = () => {
       "Realm",
     ],
     "Tools & Platforms": ["Git", "Bitbucket", "Jira", "CI/CD", "VS Code"],
-    "Web Development & Hosting": [
+    "Web & backend": [
       "Next.js",
+      "Node.js",
+      "Nest.js",
       "Vercel",
-      "Web Hosting",
       "Deployment",
     ],
   };
 
   return (
-    <section id="about" className="py-24 px-6 relative">
-      <div className="max-w-6xl mx-auto">
+    <section id="about" className="py-24 relative">
+      <div className="site-width">
         <motion.div
           ref={ref}
           initial={{ opacity: 0, y: 30 }}
@@ -56,8 +57,9 @@ const About = () => {
             About <span className="text-gradient">Me</span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Passionate React Native developer with expertise in building
-            high-performance, cross-platform mobile applications
+            Senior mobile application developer focused on React Native
+            products, performance on real devices, and dependable App Store and
+            Play Store releases.
           </p>
         </motion.div>
 
@@ -74,17 +76,15 @@ const About = () => {
                 My Journey
               </h3>
               <p className="text-muted-foreground mb-4 leading-relaxed">
-                I am a React Native developer with over 3 years of experience in
-                building high-performance, cross-platform mobile applications. I
-                specialize in creating intuitive user experiences, optimizing
-                performance, and leveraging modern tools and frameworks to
-                deliver scalable, production-ready solutions.
+                I am a senior mobile application developer with 4+ years building
+                React Native apps that ship: multi-role suites (POS, salons,
+                logistics), payments and subscriptions, and offline-friendly
+                flows your users can rely on every day.
               </p>
               <p className="text-muted-foreground mb-6 leading-relaxed">
-                My passion lies in developing mobile applications that work
-                seamlessly across both Android and iOS platforms. I stay current
-                with industry trends to ensure the delivery of innovative and
-                reliable mobile products that users love.
+                I care about architecture that scales (feature modules, Redux
+                Toolkit, typed APIs), performance on real devices, and clear
+                collaboration with design and backend so releases stay predictable.
               </p>
 
               {/* Mission Statement */}
@@ -150,7 +150,7 @@ const About = () => {
                   "Backend & APIs": "text-purple",
                   "State Management": "text-teal",
                   "Tools & Platforms": "text-orange",
-                  "Web Development & Hosting": "text-green",
+                  "Web & backend": "text-green",
                 };
                 const colorClass =
                   categoryColors[category as keyof typeof categoryColors] ||

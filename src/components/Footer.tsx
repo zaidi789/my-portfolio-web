@@ -2,37 +2,57 @@ import { motion } from "framer-motion";
 import { useRouter, usePathname } from "next/navigation";
 import Image from "next/image";
 import { Badge } from "@/src/components/ui/badge";
-import { Github, Linkedin, Mail, Heart } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
+import { Linkedin, Mail } from "lucide-react";
+import WhatsAppIcon from "@/src/components/icons/WhatsAppIcon";
+import { WHATSAPP_CHAT_URL } from "@/src/constants/contactLinks";
+
+type FooterSocial =
+  | { kind: "lucide"; icon: LucideIcon; href: string; label: string }
+  | { kind: "whatsapp"; href: string; label: string };
 
 const Footer = () => {
   const router = useRouter();
   const pathname = usePathname();
 
-  const socialLinks = [
-    { icon: Github, href: "https://github.com/zaidi789", label: "GitHub" },
+  const socialLinks: FooterSocial[] = [
     {
+      kind: "lucide",
       icon: Linkedin,
       href: "https://www.linkedin.com/in/zaid-rafiq-a6132128a/",
       label: "LinkedIn",
     },
-    { icon: Mail, href: "mailto:zaidrafiq11@gmail.com", label: "Email" },
+    {
+      kind: "lucide",
+      icon: Mail,
+      href: "mailto:zaidrafiq11@gmail.com",
+      label: "Email",
+    },
+    {
+      kind: "whatsapp",
+      href: WHATSAPP_CHAT_URL,
+      label: "WhatsApp",
+    },
   ];
 
   const quickLinks = [
+    { label: "Home", href: "/" },
+    { label: "Metrics", href: "/#metrics" },
     { label: "About", href: "/#about" },
     { label: "Skills", href: "/#skills" },
     { label: "Projects", href: "/#projects" },
+    { label: "Case Studies", href: "/#case-studies" },
     { label: "Experience", href: "/#experience" },
     { label: "Contact", href: "/#contact" },
   ];
 
   return (
-    <footer className="relative py-16 px-6 mt-24 overflow-hidden">
+    <footer className="relative py-16 mt-24 overflow-hidden">
       {/* Background elements */}
       <div className="absolute inset-0 tech-grid opacity-5" />
-      <div className="absolute inset-0 bg-gradient-to-t from-background to-transparent" />
+      <div className="absolute inset-0 bg-linear-to-t from-background to-transparent" />
 
-      <div className="max-w-6xl mx-auto relative z-10">
+      <div className="site-width relative z-10">
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
           {/* Brand Section */}
           <motion.div
@@ -57,28 +77,38 @@ const Footer = () => {
               <div>
                 <h3 className="font-bold text-xl">Zaid Rafiq</h3>
                 <p className="text-sm text-muted-foreground">
-                  React Native Developer
+                  Senior mobile application developer
                 </p>
               </div>
             </button>
 
             <p className="text-muted-foreground mb-6 leading-relaxed">
-              Passionate React Native developer with expertise in building
-              high-performance, cross-platform mobile applications. Let's create
-              amazing mobile experiences together.
+              React Native specialist focused on production-grade iOS and Android
+              apps, including multi-role suites, store releases, and field-ready
+              integrations.
             </p>
 
-            <div className="flex gap-4">
+            <div className="flex flex-wrap gap-3">
               {socialLinks.map((social) => (
                 <motion.a
                   key={social.label}
                   href={social.href}
-                  whileHover={{ scale: 1.1, y: -2 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="p-3 rounded-lg glass hover:bg-accent hover:text-accent-foreground transition-all duration-300"
+                  target={social.kind === "whatsapp" ? "_blank" : undefined}
+                  rel={
+                    social.kind === "whatsapp"
+                      ? "noopener noreferrer"
+                      : undefined
+                  }
+                  whileHover={{ scale: 1.06, y: -2 }}
+                  whileTap={{ scale: 0.96 }}
+                  className="rounded-lg glass p-3 transition-all duration-300 hover:bg-accent hover:text-accent-foreground"
                   aria-label={social.label}
                 >
-                  <social.icon className="w-5 h-5" />
+                  {social.kind === "whatsapp" ? (
+                    <WhatsAppIcon className="h-5 w-5" />
+                  ) : (
+                    <social.icon className="h-5 w-5" />
+                  )}
                 </motion.a>
               ))}
             </div>
@@ -97,17 +127,20 @@ const Footer = () => {
                   <button
                     onClick={(e) => {
                       e.preventDefault();
-                      // Check if we're on the home page
-                      const isHomePage = pathname === "/";
-                      const sectionId = link.href.slice(2); // Remove /#
-                      const element = document.querySelector(`#${sectionId}`);
-
-                      if (element && isHomePage) {
-                        // If element exists and we're on home page, scroll to it
-                        element.scrollIntoView({ behavior: "smooth" });
-                      } else {
-                        // Navigate to home page with hash using router
+                      const isSectionLink = link.href.startsWith("/#");
+                      if (!isSectionLink) {
                         router.push(link.href);
+                        return;
+                      }
+
+                      const isHomePage = pathname === "/";
+                      const sectionId = link.href.slice(2);
+                      const element = document.getElementById(sectionId);
+                      if (element && isHomePage) {
+                        element.scrollIntoView({ behavior: "smooth" });
+                        window.history.replaceState(null, "", link.href);
+                      } else {
+                        window.location.assign(link.href);
                       }
                     }}
                     className="text-muted-foreground hover:text-primary transition-colors duration-300 flex items-center gap-2 group text-left w-full"
@@ -139,12 +172,12 @@ const Footer = () => {
               </div>
               <div>
                 <p className="text-sm text-muted-foreground mb-1">Location</p>
-                <p className="text-sm">Madina Heights, Johar Town, Lahore</p>
+                <p className="text-sm">129 E Punjab Society Phase 2, Lahore</p>
               </div>
               <div>
                 <Badge variant="secondary" className="glass">
-                  <div className="w-2 h-2 bg-accent-subtle rounded-full mr-2 animate-pulse" />
-                  Available for hire
+                  <div className="w-2 h-2 bg-green rounded-full mr-2 animate-pulse" />
+                  Open to senior mobile roles
                 </Badge>
               </div>
             </div>
@@ -159,7 +192,7 @@ const Footer = () => {
           className="pt-8 border-t border-border/50 flex flex-col md:flex-row justify-between items-center gap-4"
         >
           <div className="flex items-center gap-2 text-sm text-muted-foreground">
-            <span>Copyright © 2025. All rights reserved by Zaid Rafiq.</span>
+            <span>Copyright © 2026. All rights reserved by Zaid Rafiq.</span>
           </div>
         </motion.div>
       </div>

@@ -20,7 +20,7 @@ const Experience = () => {
 
   const experiences = [
     {
-      title: "React Native Developer",
+      title: "Senior React Native Developer",
       company: "Future Dev Solutions",
       type: "Full-time",
       location: "Lahore, Pakistan",
@@ -136,14 +136,14 @@ const Experience = () => {
   return (
     <section
       id="experience"
-      className="py-24 px-4 sm:px-6 relative overflow-hidden"
+      className="py-24 relative overflow-hidden"
     >
       {/* Background Elements */}
       <div className="absolute inset-0 bg-gradient-to-br from-background via-muted/5 to-background" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(59,130,246,0.1),transparent_50%)]" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(168,85,247,0.1),transparent_50%)]" />
 
-      <div className="max-w-7xl mx-auto relative">
+      <div className="site-width relative">
         <motion.div
           ref={ref}
           initial={{ opacity: 0, y: 30 }}

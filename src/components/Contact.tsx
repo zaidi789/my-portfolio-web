@@ -10,12 +10,12 @@ import { useToast } from "@/src/hooks/use-toast";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
+import type { LucideIcon } from "lucide-react";
 import {
   Mail,
   Phone,
   MapPin,
   Send,
-  Github,
   Linkedin,
   Calendar,
   MessageSquare,
@@ -23,6 +23,8 @@ import {
   Instagram,
   Loader2,
 } from "lucide-react";
+import WhatsAppIcon from "@/src/components/icons/WhatsAppIcon";
+import { WHATSAPP_CHAT_URL } from "@/src/constants/contactLinks";
 import {
   Select,
   SelectContent,
@@ -134,23 +136,33 @@ const Contact = () => {
     {
       icon: MapPin,
       label: "Location",
-      value: "Madina Heights, Johar Town, Lahore",
+      value: "129 E Punjab Society Phase 2, Lahore",
       href: "#",
     },
   ];
 
-  const socialLinks = [
+  const socialLinks: Array<
+    | {
+        kind: "lucide";
+        icon: LucideIcon;
+        label: string;
+        href: string;
+        color: string;
+      }
+    | { kind: "whatsapp"; label: string; href: string; color: string }
+  > = [
     {
-      icon: Github,
-      label: "GitHub",
-      href: "https://github.com/zaidi789",
-      color: "hover:text-foreground",
-    },
-    {
+      kind: "lucide",
       icon: Linkedin,
       label: "LinkedIn",
       href: "https://www.linkedin.com/in/zaid-rafiq-a6132128a/",
       color: "hover:text-blue-400",
+    },
+    {
+      kind: "whatsapp",
+      label: "WhatsApp",
+      href: WHATSAPP_CHAT_URL,
+      color: "hover:text-[#25D366]",
     },
   ];
 
@@ -164,11 +176,11 @@ const Contact = () => {
   ];
 
   return (
-    <section id="contact" className="py-24 px-6 relative overflow-hidden">
+    <section id="contact" className="py-24 relative overflow-hidden">
       {/* Background elements */}
       <div className="absolute inset-0 tech-grid opacity-10" />
 
-      <div className="max-w-6xl mx-auto relative z-10">
+      <div className="site-width relative z-10">
         <motion.div
           ref={ref}
           initial={{ opacity: 0, y: 30 }}
@@ -231,17 +243,27 @@ const Contact = () => {
             >
               <Card className="glass p-6">
                 <h4 className="font-semibold mb-4">Connect With Me</h4>
-                <div className="flex gap-4">
+                <div className="flex flex-wrap gap-4">
                   {socialLinks.map((social) => (
                     <motion.a
                       key={social.label}
                       href={social.href}
-                      whileHover={{ scale: 1.1, y: -2 }}
-                      whileTap={{ scale: 0.95 }}
-                      className={`p-3 rounded-lg glass hover:bg-accent hover:text-accent-foreground transition-all duration-300 ${social.color}`}
+                      target={social.kind === "whatsapp" ? "_blank" : undefined}
+                      rel={
+                        social.kind === "whatsapp"
+                          ? "noopener noreferrer"
+                          : undefined
+                      }
+                      whileHover={{ scale: 1.08, y: -2 }}
+                      whileTap={{ scale: 0.96 }}
+                      className={`rounded-lg glass p-3 transition-all duration-300 hover:bg-accent hover:text-accent-foreground ${social.color}`}
                       aria-label={social.label}
                     >
-                      <social.icon className="w-5 h-5" />
+                      {social.kind === "whatsapp" ? (
+                        <WhatsAppIcon className="h-5 w-5" />
+                      ) : (
+                        <social.icon className="h-5 w-5" />
+                      )}
                     </motion.a>
                   ))}
                 </div>

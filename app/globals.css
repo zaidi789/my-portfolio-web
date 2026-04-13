@@ -1,5 +1,4 @@
 @import "tailwindcss";
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600&display=swap");
 @import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
@@ -180,10 +179,9 @@
   --color-chart-4: hsl(var(--chart-4));
   --color-chart-5: hsl(var(--chart-5));
 
-  /* Font Families */
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
-  --font-mono: "JetBrains Mono", ui-monospace, monospace;
-  --font-inter: "Inter", ui-sans-serif, system-ui, sans-serif;
+  /* Font families: set on <body> via next/font (see app/layout.tsx) */
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains-mono), ui-monospace, monospace;
 
   /* Border Radius */
   --radius-sm: calc(var(--radius) - 4px);
@@ -212,7 +210,7 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground font-inter antialiased;
+    @apply bg-background text-foreground font-sans antialiased;
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";
   }
 
@@ -233,6 +231,11 @@
     background: hsl(var(--background) / 0.9);
     backdrop-filter: blur(30px);
     border: 1px solid hsl(var(--border) / 0.3);
+  }
+
+  /** Header, footer, and main sections share the same horizontal band (~90% viewport). */
+  .site-width {
+    @apply mx-auto w-[90%] max-w-full;
   }
 
   /* Enhanced effects */
@@ -374,15 +377,35 @@
       linear-gradient(90deg, hsl(var(--border) / 0.3) 1px, transparent 1px);
     background-size: 40px 40px;
   }
+
+  /* Portfolio hero: subtle depth, mobile-product feel (no heavy glow) */
+  .hero-portfolio-mobile::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background:
+      radial-gradient(
+        ellipse 90% 60% at 50% -35%,
+        hsl(var(--primary) / 0.08),
+        transparent 58%
+      ),
+      radial-gradient(
+        ellipse 50% 40% at 95% 25%,
+        hsl(var(--teal) / 0.05),
+        transparent 50%
+      );
+  }
 }
 
 @layer utilities {
   .font-mono {
-    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-family: var(--font-jetbrains-mono), ui-monospace, monospace;
   }
 
   .font-inter {
-    font-family: "Inter", ui-sans-serif, system-ui, sans-serif;
+    font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   }
 }
 

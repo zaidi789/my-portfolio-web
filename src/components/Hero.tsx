@@ -1,181 +1,248 @@
-import { motion } from "framer-motion";
+"use client";
+
+import { motion, useReducedMotion } from "framer-motion";
+import { usePathname } from "next/navigation";
+import type { MouseEvent } from "react";
 import { Button } from "@/src/components/ui/button";
-import { Badge } from "@/src/components/ui/badge";
-import { Download, Mail, Github, Linkedin } from "lucide-react";
-import Image from "next/image";
+import {
+  Download,
+  Mail,
+  Linkedin,
+  ArrowRight,
+  CheckCircle2,
+} from "lucide-react";
 import Link from "next/link";
-import Scene3D from "./Scene3D";
+import HeroMobileShowcase from "@/src/components/HeroMobileShowcase";
+import WhatsAppIcon from "@/src/components/icons/WhatsAppIcon";
+import { WHATSAPP_CHAT_URL } from "@/src/constants/contactLinks";
 
 const Hero = () => {
-  const roles = [
-    "React Native Developer",
-    "Mobile App Developer",
-    "Cross-Platform Developer",
+  const pathname = usePathname();
+  const reduceMotion = useReducedMotion();
+
+  const goToProjectsSection = (e: MouseEvent<HTMLAnchorElement>) => {
+    if (pathname === "/") {
+      e.preventDefault();
+      document.getElementById("projects")?.scrollIntoView({
+        behavior: reduceMotion ? "auto" : "smooth",
+      });
+      window.history.replaceState(null, "", "/#projects");
+    } else {
+      e.preventDefault();
+      window.location.assign("/#projects");
+    }
+  };
+  const ease = [0.22, 1, 0.36, 1] as const;
+  const fadeUp = reduceMotion
+    ? { initial: false, animate: { opacity: 1, y: 0 } }
+    : {
+        initial: { opacity: 0, y: 16 },
+        animate: { opacity: 1, y: 0 },
+        transition: { duration: 0.45, ease },
+      };
+
+  const capabilities = [
+    "Multi-app suites for customer, staff, and field teams.",
+    "TypeScript and React Native for iOS and Android.",
+    "Push notifications, offline-aware flows, and store releases.",
   ];
 
   return (
-    <div className="relative min-h-screen overflow-hidden">
-      {/* Gradient background overlay */}
-      <div className="absolute inset-0 bg-gradient-to-br from-background via-background/95 to-background/80 z-0" />
+    <section
+      className="relative min-h-[100dvh] overflow-hidden hero-portfolio-mobile"
+      aria-labelledby="hero-heading"
+    >
+      <div className="pointer-events-none absolute inset-0 bg-linear-to-b from-background via-background to-muted/25" />
+      <div className="pointer-events-none absolute inset-0 opacity-[0.035] tech-grid" />
 
-      {/* Main container with grid layout */}
-      <div className="relative z-10 min-h-screen flex items-center">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 w-full">
-          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center min-h-screen py-16 lg:py-20">
-            {/* Left side - Content */}
-            <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-              className="space-y-6 lg:space-y-8 text-left order-2 lg:order-1"
-            >
-              {/* Role badges */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2, duration: 0.6 }}
-                className="flex flex-wrap gap-3 mb-6"
-              >
-                {roles.map((role, index) => (
-                  <motion.div
-                    key={role}
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: 0.4 + index * 0.2, duration: 0.5 }}
-                  >
-                    <Badge
-                      variant="secondary"
-                      className="glass text-sm px-4 py-2 font-medium hover:bg-accent hover:text-accent-foreground transition-all duration-300"
-                    >
-                      {role}
-                    </Badge>
-                  </motion.div>
-                ))}
+      <div className="relative z-10 flex min-h-[100dvh] flex-col lg:justify-center">
+        <div className="site-width flex flex-1 flex-col pb-[max(1rem,env(safe-area-inset-bottom))] pt-[calc(5.5rem+env(safe-area-inset-top))] sm:pb-8 sm:pt-[calc(5.75rem+env(safe-area-inset-top))] lg:flex-none lg:pb-24 lg:pt-[calc(6.25rem+env(safe-area-inset-top))]">
+          <div className="grid min-h-0 flex-1 content-start items-stretch gap-6 sm:gap-10 lg:min-h-0 lg:flex-none lg:grid-cols-[minmax(0,1.08fr)_minmax(0,0.92fr)] lg:items-center lg:gap-14 lg:content-center xl:gap-16">
+            <div className="order-2 flex min-h-0 flex-col lg:order-1 lg:justify-center">
+              <motion.div {...fadeUp}>
+                <span className="inline-flex items-center rounded-full border border-primary/25 bg-primary/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-primary">
+                  React Native, iOS, Android
+                </span>
               </motion.div>
 
-              {/* Main heading ---*/}
-              <motion.h1
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3, duration: 0.8 }}
-                className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold"
+              <motion.div
+                className="mt-4 sm:mt-5"
+                {...(reduceMotion
+                  ? { initial: false, animate: { opacity: 1, y: 0 } }
+                  : {
+                      initial: { opacity: 0, y: 20 },
+                      animate: { opacity: 1, y: 0 },
+                      transition: { duration: 0.5, delay: 0.04, ease },
+                    })}
               >
-                <span className="block">Hey, I'm</span>
-                <span className="block text-gradient">Zaid Rafiq</span>
-              </motion.h1>
+                <h1
+                  id="hero-heading"
+                  className="text-[2.125rem] font-semibold leading-[1.12] tracking-tight text-foreground sm:text-5xl lg:text-[3.25rem] lg:leading-[1.1]"
+                >
+                  <span className="block">Zaid Rafiq</span>
+                  <span className="mt-2 block text-[1.125rem] font-normal leading-snug tracking-normal text-muted-foreground sm:text-xl lg:text-[1.35rem]">
+                    Senior mobile application developer
+                  </span>
+                </h1>
+              </motion.div>
 
-              {/* Subtitle */}
               <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.5, duration: 0.6 }}
-                className="text-base sm:text-lg lg:text-xl text-muted-foreground leading-relaxed max-w-xl"
+                className="mt-4 max-w-[34rem] text-[1.0625rem] leading-relaxed text-muted-foreground sm:mt-6 sm:text-lg"
+                {...(reduceMotion
+                  ? { initial: false, animate: { opacity: 1 } }
+                  : {
+                      initial: { opacity: 0, y: 12 },
+                      animate: { opacity: 1, y: 0 },
+                      transition: { duration: 0.45, delay: 0.1, ease },
+                    })}
               >
-                I craft{" "}
-                <span className="text-blue font-semibold">
-                  high-performance mobile applications
-                </span>
-                , build{" "}
-                <span className="text-purple font-semibold">
-                  cross-platform solutions
-                </span>
-                , and deliver{" "}
-                <span className="text-teal font-semibold">
-                  scalable React Native apps{" "}
-                </span>
-                that users love.
+                I build production mobile apps people open every day. The stack
+                is fast, maintainable React Native, tuned for real devices and
+                store-ready quality.
               </motion.p>
 
-              {/* CTA Buttons ---- */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.7, duration: 0.6 }}
-                className="flex flex-col sm:flex-row gap-4 pt-8"
+              <motion.ul
+                className="mt-5 max-w-[34rem] space-y-2.5 sm:mt-7 sm:space-y-3"
+                {...(reduceMotion
+                  ? { initial: false, animate: { opacity: 1 } }
+                  : {
+                      initial: { opacity: 0, y: 12 },
+                      animate: { opacity: 1, y: 0 },
+                      transition: { duration: 0.45, delay: 0.14, ease },
+                    })}
               >
-                <Link href="#contact">
-                  <Button variant="hero" size="lg" className="group">
-                    <Mail className="mr-2 group-hover:scale-110 transition-transform" />
-                    Hire Me
-                  </Button>
-                </Link>
-                <Link href="/Zaid_Resume.pdf">
-                  <Button variant="neon" size="lg" className="group">
-                    <Download className="mr-2 group-hover:scale-110 transition-transform" />
-                    Download Resume
-                  </Button>
-                </Link>
-              </motion.div>
+                {capabilities.map((line) => (
+                  <li
+                    key={line}
+                    className="flex gap-3 text-[0.9375rem] leading-snug text-muted-foreground sm:text-[15px]"
+                  >
+                    <CheckCircle2
+                      className="mt-0.5 h-[18px] w-[18px] shrink-0 text-primary"
+                      aria-hidden
+                    />
+                    <span>{line}</span>
+                  </li>
+                ))}
+              </motion.ul>
 
-              {/* Social links */}
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.9, duration: 0.6 }}
-                className="flex gap-6 pt-8"
+                className="mt-6 grid max-w-md grid-cols-3 gap-2 sm:mt-8 sm:max-w-lg sm:gap-3"
+                {...(reduceMotion
+                  ? { initial: false, animate: { opacity: 1 } }
+                  : {
+                      initial: { opacity: 0, y: 12 },
+                      animate: { opacity: 1, y: 0 },
+                      transition: { duration: 0.45, delay: 0.18, ease },
+                    })}
               >
                 {[
-                  {
-                    icon: Github,
-                    href: "https://github.com/zaidi789",
-                    label: "GitHub",
-                  },
-                  {
-                    icon: Linkedin,
-                    href: "https://www.linkedin.com/in/zaid-rafiq-a6132128a/",
-                    label: "LinkedIn",
-                  },
-                ].map(({ icon: Icon, href, label }) => (
-                  <motion.a
-                    key={label}
-                    href={href}
-                    target="_blank"
-                    whileHover={{ scale: 1.1, y: -2 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="glass p-3 rounded-full hover:bg-accent hover:text-accent-foreground transition-all duration-300"
-                    aria-label={label}
+                  { label: "Years of experience", value: "4+" },
+                  { label: "Products in production", value: "12+" },
+                  { label: "UI surfaces delivered", value: "25+" },
+                ].map((item) => (
+                  <div
+                    key={item.label}
+                    className="rounded-2xl border border-border/60 bg-card/40 px-2 py-3 text-center shadow-sm backdrop-blur-sm sm:px-3 sm:py-3.5"
                   >
-                    <Icon className="w-6 h-6" />
-                  </motion.a>
+                    <p className="text-lg font-semibold tabular-nums text-foreground sm:text-xl">
+                      {item.value}
+                    </p>
+                    <p className="mt-1 text-[10px] font-medium uppercase tracking-[0.12em] text-muted-foreground sm:text-[11px]">
+                      {item.label}
+                    </p>
+                  </div>
                 ))}
               </motion.div>
-            </motion.div>
 
-            {/* Right side - 3D Scene */}
-            <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.4, duration: 0.8 }}
-              className="relative h-[400px] sm:h-[500px] lg:h-[600px] xl:h-[700px] w-full order-1 lg:order-2"
-            >
-              <Scene3D />
-              {/* Mobile overlay for better visibility */}
-              <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-background/20 pointer-events-none lg:hidden" />
-            </motion.div>
+              <motion.div
+                className="mt-7 flex flex-col gap-2.5 sm:mt-9 sm:flex-row sm:flex-wrap sm:items-stretch sm:gap-3"
+                {...(reduceMotion
+                  ? { initial: false, animate: { opacity: 1 } }
+                  : {
+                      initial: { opacity: 0, y: 12 },
+                      animate: { opacity: 1, y: 0 },
+                      transition: { duration: 0.45, delay: 0.22, ease },
+                    })}
+              >
+                <Link href="#contact" className="sm:min-w-0">
+                  <Button
+                    variant="hero"
+                    size="lg"
+                    className="h-12 w-full rounded-xl text-[15px] font-semibold sm:h-12 sm:w-auto sm:min-w-[200px]"
+                  >
+                    <Mail className="mr-2 h-[18px] w-[18px]" />
+                    Start a conversation
+                  </Button>
+                </Link>
+                <Link
+                  href="/#projects"
+                  onClick={goToProjectsSection}
+                  className="sm:min-w-0"
+                >
+                  <Button
+                    variant="outline"
+                    size="lg"
+                    className="h-12 w-full rounded-xl border-border/70 bg-background/50 text-[15px] font-semibold backdrop-blur-sm sm:h-12 sm:w-auto sm:min-w-[160px]"
+                  >
+                    View projects
+                    <ArrowRight className="ml-2 h-[18px] w-[18px]" />
+                  </Button>
+                </Link>
+                <Link href="/Zaid_Resume.pdf" className="sm:min-w-0">
+                  <Button
+                    variant="ghost"
+                    size="lg"
+                    className="h-12 w-full rounded-xl text-[15px] font-medium text-muted-foreground hover:bg-muted/40 hover:text-foreground sm:h-12 sm:w-auto"
+                  >
+                    <Download className="mr-2 h-[18px] w-[18px]" />
+                    Resume
+                  </Button>
+                </Link>
+              </motion.div>
+
+              <motion.div
+                className="mt-8 flex w-full flex-col gap-3 border-t border-border/40 pt-6 sm:mt-10 sm:flex-row sm:flex-wrap sm:items-center sm:gap-4 sm:pt-8"
+                {...(reduceMotion
+                  ? { initial: false, animate: { opacity: 1 } }
+                  : {
+                      initial: { opacity: 0 },
+                      animate: { opacity: 1 },
+                      transition: { duration: 0.4, delay: 0.28, ease },
+                    })}
+              >
+                <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-muted-foreground">
+                  Connect
+                </span>
+                <div className="grid w-full max-w-xs grid-cols-2 gap-2 sm:flex sm:w-auto sm:max-w-none">
+                  <a
+                    href="https://www.linkedin.com/in/zaid-rafiq-a6132128a/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="LinkedIn"
+                    className="flex h-12 items-center justify-center rounded-xl border border-border/60 bg-card/30 text-muted-foreground transition-colors hover:border-primary/35 hover:text-foreground sm:h-10 sm:w-10"
+                  >
+                    <Linkedin className="h-[18px] w-[18px]" />
+                  </a>
+                  <a
+                    href={WHATSAPP_CHAT_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Chat on WhatsApp"
+                    className="flex h-12 items-center justify-center rounded-xl border border-border/60 bg-card/30 text-muted-foreground transition-colors hover:border-[#25D366]/45 hover:text-[#25D366] sm:h-10 sm:w-10"
+                  >
+                    <WhatsAppIcon className="h-[18px] w-[18px]" />
+                  </a>
+                </div>
+              </motion.div>
+            </div>
+
+            <div className="order-1 flex min-h-[min(42dvh,380px)] flex-1 items-center justify-center sm:min-h-[340px] lg:order-2 lg:min-h-[420px] lg:flex-none">
+              <HeroMobileShowcase reduceMotion={!!reduceMotion} />
+            </div>
           </div>
         </div>
-
-        {/* Scroll indicator */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.2, duration: 0.6 }}
-          className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20"
-        >
-          <motion.div
-            animate={{ y: [0, 10, 0] }}
-            transition={{ duration: 2, repeat: Infinity }}
-            className="w-6 h-10 border-2 border-primary/50 rounded-full flex justify-center"
-          >
-            <motion.div
-              animate={{ y: [0, 12, 0] }}
-              transition={{ duration: 2, repeat: Infinity }}
-              className="w-1 h-3 bg-primary rounded-full mt-2"
-            />
-          </motion.div>
-        </motion.div>
       </div>
-    </div>
+    </section>
   );
 };
 

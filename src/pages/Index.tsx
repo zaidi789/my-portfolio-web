@@ -1,8 +1,10 @@
-import { useEffect, Suspense } from "react";
+import { useEffect } from "react";
 import dynamic from "next/dynamic";
-import ClientOnly from "@/src/components/ClientOnly";
+import {
+  HeroLoadingShell,
+  SectionLoadingShell,
+} from "@/src/components/PageSectionSkeleton";
 
-// Dynamically import components to prevent SSR issues
 const Navigation = dynamic(() => import("@/src/components/Navigation"), {
   ssr: false,
   loading: () => <div className="h-16 md:h-20" />,
@@ -10,56 +12,48 @@ const Navigation = dynamic(() => import("@/src/components/Navigation"), {
 
 const Hero = dynamic(() => import("@/src/components/Hero"), {
   ssr: false,
-  loading: () => (
-    <div className="min-h-screen flex items-center justify-center">
-      Loading...
-    </div>
-  ),
+  loading: () => <HeroLoadingShell />,
 });
 
 const About = dynamic(() => import("@/src/components/About"), {
   ssr: false,
-  loading: () => (
-    <div className="min-h-screen flex items-center justify-center">
-      Loading...
-    </div>
-  ),
+  loading: () => <SectionLoadingShell minHeight="min-h-[28rem]" />,
 });
 
 const Skills = dynamic(() => import("@/src/components/Skills"), {
   ssr: false,
-  loading: () => (
-    <div className="min-h-screen flex items-center justify-center">
-      Loading...
-    </div>
-  ),
+  loading: () => <SectionLoadingShell minHeight="min-h-[32rem]" />,
 });
 
 const Projects = dynamic(() => import("@/src/components/Projects"), {
   ssr: false,
-  loading: () => (
-    <div className="min-h-screen flex items-center justify-center">
-      Loading...
-    </div>
-  ),
+  loading: () => <SectionLoadingShell minHeight="min-h-[36rem]" />,
 });
+
+const PortfolioMetrics = dynamic(
+  () => import("@/src/components/PortfolioMetrics"),
+  {
+    ssr: false,
+    loading: () => <SectionLoadingShell minHeight="min-h-48" />,
+  },
+);
+
+const CaseStudiesPreview = dynamic(
+  () => import("@/src/components/CaseStudiesPreview"),
+  {
+    ssr: false,
+    loading: () => <SectionLoadingShell minHeight="min-h-80" />,
+  },
+);
 
 const Experience = dynamic(() => import("@/src/components/Experience"), {
   ssr: false,
-  loading: () => (
-    <div className="min-h-screen flex items-center justify-center">
-      Loading...
-    </div>
-  ),
+  loading: () => <SectionLoadingShell minHeight="min-h-[36rem]" />,
 });
 
 const Contact = dynamic(() => import("@/src/components/Contact"), {
   ssr: false,
-  loading: () => (
-    <div className="min-h-screen flex items-center justify-center">
-      Loading...
-    </div>
-  ),
+  loading: () => <SectionLoadingShell minHeight="min-h-[28rem]" />,
 });
 
 const Footer = dynamic(() => import("@/src/components/Footer"), {
@@ -69,20 +63,16 @@ const Footer = dynamic(() => import("@/src/components/Footer"), {
 
 const Index = () => {
   useEffect(() => {
-    // Set the page title
     document.title =
-      "Zaid Rafiq - React Native Developer | Mobile App Developer | Cross-Platform Developer";
+      "Zaid Rafiq | Senior mobile application developer, React Native portfolio";
 
-    // Add smooth scrolling behavior
     document.documentElement.style.scrollBehavior = "smooth";
 
-    // Handle hash navigation on page load
     const handleHashNavigation = () => {
       const hash = window.location.hash;
       if (hash) {
         const element = document.querySelector(hash);
         if (element) {
-          // Add a small delay to ensure the page is fully loaded
           setTimeout(() => {
             element.scrollIntoView({ behavior: "smooth" });
           }, 100);
@@ -90,10 +80,7 @@ const Index = () => {
       }
     };
 
-    // Handle initial hash
     handleHashNavigation();
-
-    // Handle hash changes (when user navigates with hash)
     window.addEventListener("hashchange", handleHashNavigation);
 
     return () => {
@@ -104,49 +91,43 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
-      <ClientOnly fallback={<div className="h-16 md:h-20" />}>
-        <Navigation />
-      </ClientOnly>
+      <Navigation />
 
       <main>
         <section id="home">
           <Hero />
         </section>
 
+        <section id="metrics">
+          <PortfolioMetrics />
+        </section>
+
         <section id="about">
-          <ClientOnly>
-            <About />
-          </ClientOnly>
+          <About />
         </section>
 
         <section id="skills">
-          <ClientOnly>
-            <Skills />
-          </ClientOnly>
+          <Skills />
         </section>
 
         <section id="projects">
-          <ClientOnly>
-            <Projects />
-          </ClientOnly>
+          <Projects />
+        </section>
+
+        <section id="case-studies">
+          <CaseStudiesPreview />
         </section>
 
         <section id="experience">
-          <ClientOnly>
-            <Experience />
-          </ClientOnly>
+          <Experience />
         </section>
 
         <section id="contact">
-          <ClientOnly>
-            <Contact />
-          </ClientOnly>
+          <Contact />
         </section>
       </main>
 
-      <ClientOnly>
-        <Footer />
-      </ClientOnly>
+      <Footer />
     </div>
   );
 };
