@@ -22,9 +22,6 @@ const nextConfig: NextConfig = {
   typescript: {
     ignoreBuildErrors: false,
   },
-  eslint: {
-    ignoreDuringBuilds: false,
-  },
   // Add better error handling for build process
   onDemandEntries: {
     maxInactiveAge: 25 * 1000,
