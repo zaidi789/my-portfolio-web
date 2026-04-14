@@ -5,6 +5,8 @@ import { useRouter, usePathname } from "next/navigation";
 import Image from "next/image";
 import { Badge } from "@/components/ui/badge";
 import { Dock, DockIcon } from "@/components/ui/dock";
+import WhatsAppIcon from "@/src/components/icons/WhatsAppIcon";
+import type { LucideIcon } from "lucide-react";
 import {
   Github,
   Linkedin,
@@ -14,23 +16,37 @@ import {
   Instagram,
 } from "lucide-react";
 
+const WHATSAPP_PRESET_MESSAGE = encodeURIComponent(
+  "Hi Zaid, I found your portfolio and would like to discuss a project."
+);
+const WHATSAPP_CHAT_URL = `https://wa.me/923027924491?text=${WHATSAPP_PRESET_MESSAGE}`;
+
+type FooterSocial =
+  | { kind: "lucide"; icon: LucideIcon; href: string; label: string }
+  | { kind: "whatsapp"; href: string; label: string };
+
 const Footer = () => {
   const router = useRouter();
   const pathname = usePathname();
 
-  const socialLinks = [
-    { icon: Github, href: "#", label: "GitHub" },
+  const socialLinks: FooterSocial[] = [
     {
+      kind: "lucide",
       icon: Linkedin,
       href: "https://www.linkedin.com/in/zaid-rafiq-a6132128a/",
       label: "LinkedIn",
     },
     {
-      icon: Instagram,
-      href: "https://www.instagram.com/majestic.kashif/",
-      label: "Instagram",
+      kind: "lucide",
+      icon: Mail,
+      href: "mailto:zaidrafiq11@gmail.com",
+      label: "Email",
     },
-    { icon: Mail, href: "mailto:zaidrafiq11@gmail.com", label: "Email" },
+    {
+      kind: "whatsapp",
+      href: WHATSAPP_CHAT_URL,
+      label: "WhatsApp",
+    },
   ];
 
   const quickLinks = [
@@ -97,7 +113,11 @@ const Footer = () => {
                     aria-label={social.label}
                     className="flex items-center justify-center w-full h-full"
                   >
-                    <social.icon className="w-5 h-5" />
+                    {social.kind === "whatsapp" ? (
+                      <WhatsAppIcon className="w-5 h-5" />
+                    ) : (
+                      <social.icon className="w-5 h-5" />
+                    )}
                   </a>
                 </DockIcon>
               ))}
