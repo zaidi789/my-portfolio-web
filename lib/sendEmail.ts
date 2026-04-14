@@ -16,6 +16,13 @@ export async function sendMail(data: MailData) {
   const SMTP_USER = process.env.SMTP_USER;
   const SMTP_PASS = process.env.SMTP_PASS;
   const SMTP_FROM = process.env.SMTP_FROM;
+
+  if (!SMTP_HOST || !SMTP_PORT || !SMTP_USER || !SMTP_PASS || !SMTP_FROM) {
+    throw new Error(
+      "Missing required email environment variables: SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASS, SMTP_FROM"
+    );
+  }
+
   const transporter = nodemailer.createTransport({
     service: "Gmail",
     host: SMTP_HOST,
