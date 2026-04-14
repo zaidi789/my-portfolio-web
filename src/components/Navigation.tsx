@@ -1,3 +1,5 @@
+"use client";
+
 import { motion } from "framer-motion";
 import { useState, useEffect, type MouseEvent } from "react";
 import { usePathname } from "next/navigation";

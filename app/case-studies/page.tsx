@@ -1,19 +1,12 @@
-"use client";
+import type { Metadata } from "next";
+import { Badge } from "@/components/ui/badge";
+import { Card } from "@/components/ui/card";
 
-import dynamic from "next/dynamic";
-import { useEffect } from "react";
-import { Card } from "@/src/components/ui/card";
-import { Badge } from "@/src/components/ui/badge";
-
-const Navigation = dynamic(() => import("@/src/components/Navigation"), {
-  ssr: false,
-  loading: () => <div className="h-16 md:h-20" />,
-});
-
-const Footer = dynamic(() => import("@/src/components/Footer"), {
-  ssr: false,
-  loading: () => <div className="h-20" />,
-});
+export const metadata: Metadata = {
+  title: "Case studies | Zaid Rafiq",
+  description:
+    "How I approach product problems, architecture choices, and production delivery in mobile-first environments.",
+};
 
 const caseStudies = [
   {
@@ -48,45 +41,42 @@ const caseStudies = [
   },
 ];
 
-const CaseStudiesPage = () => {
-  useEffect(() => {
-    document.title = "Case studies | Zaid Rafiq";
-  }, []);
-
+export default function CaseStudiesPage() {
   return (
-    <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
-      <Navigation />
-
-      <main className="pt-28 pb-16">
+    <div className="min-h-screen overflow-x-hidden bg-background text-foreground">
+      <main className="pb-16 pt-28">
         <div className="site-width">
           <Badge variant="secondary" className="glass mb-4">
             Detailed Work
           </Badge>
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">Case Studies</h1>
-          <p className="text-muted-foreground max-w-3xl mb-10 leading-relaxed">
+          <h1 className="mb-4 text-4xl font-bold md:text-5xl">Case Studies</h1>
+          <p className="mb-10 max-w-3xl leading-relaxed text-muted-foreground">
             How I approach product problems, architecture choices, and production
             delivery in mobile-first environments.
           </p>
 
           <div className="space-y-6">
             {caseStudies.map((item) => (
-              <Card key={item.title} className="glass p-7 border-border/60">
-                <h2 className="text-2xl font-semibold mb-4">{item.title}</h2>
-                <div className="space-y-4 text-muted-foreground leading-relaxed">
+              <Card
+                key={item.title}
+                className="glass border-border/60 p-7"
+              >
+                <h2 className="mb-4 text-2xl font-semibold">{item.title}</h2>
+                <div className="space-y-4 leading-relaxed text-muted-foreground">
                   <div>
-                    <h3 className="text-sm font-semibold text-foreground mb-1.5">
+                    <h3 className="mb-1.5 text-sm font-semibold text-foreground">
                       Challenge
                     </h3>
                     <p>{item.challenge}</p>
                   </div>
                   <div>
-                    <h3 className="text-sm font-semibold text-foreground mb-1.5">
+                    <h3 className="mb-1.5 text-sm font-semibold text-foreground">
                       What I built
                     </h3>
                     <p>{item.implementation}</p>
                   </div>
                   <div>
-                    <h3 className="text-sm font-semibold text-foreground mb-1.5">
+                    <h3 className="mb-1.5 text-sm font-semibold text-foreground">
                       Outcome
                     </h3>
                     <p>{item.result}</p>
@@ -104,10 +94,6 @@ const CaseStudiesPage = () => {
           </div>
         </div>
       </main>
-
-      <Footer />
     </div>
   );
-};
-
-export default CaseStudiesPage;
+}

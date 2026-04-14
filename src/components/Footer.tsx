@@ -1,3 +1,5 @@
+"use client";
+
 import { motion } from "framer-motion";
 import { useRouter, usePathname } from "next/navigation";
 import Image from "next/image";

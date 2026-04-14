@@ -19,9 +19,6 @@ const nextConfig: NextConfig = {
       "framer-motion",
     ],
   },
-  // Properly handle next-themes as an external package
-  serverExternalPackages: ["next-themes"],
-  // Add this to help with script rendering issues
   typescript: {
     ignoreBuildErrors: false,
   },
