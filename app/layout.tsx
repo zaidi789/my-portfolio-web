@@ -16,6 +16,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://zaidrafiq.vercel.app"),
   title: "Zaid Rafiq - Senior Mobile Application Developer",
   description:
     "Senior mobile application developer specializing in React Native, iOS, Android, and production-ready mobile products.",
