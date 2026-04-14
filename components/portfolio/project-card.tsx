@@ -37,12 +37,13 @@ export function ProjectCard({ project, index, delay = 0 }: ProjectCardProps) {
             src={project.image}
             alt={project.title}
             fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
             className="object-cover group-hover:scale-110 transition-transform duration-500"
           />
         </div>
 
         {/* Project Content - On Bottom */}
-        <div className="p-6 flex flex-col flex-grow">
+        <div className="p-6 flex flex-col grow">
           {/* Project Type Badge */}
           <div className="flex items-center gap-2 mb-3">
             <project.icon className="w-4 h-4 text-primary" />

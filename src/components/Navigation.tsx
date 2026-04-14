@@ -132,7 +132,7 @@ const Navigation = () => {
             >
               <div className="relative h-9 w-9 shrink-0 overflow-hidden rounded-xl ring-1 ring-border/60 shadow-md sm:h-10 sm:w-10">
                 <Image
-                  src="/logo.png"
+                  src="/headshot.jpg"
                   alt=""
                   width={40}
                   height={40}

@@ -89,11 +89,11 @@ const Navigation = () => {
             >
               <div className="w-10 h-10 rounded-lg overflow-hidden shadow-lg">
                 <Image
-                  src="/logo.png"
+                  src="/headshot.jpg"
                   alt="Zaid Rafiq Logo"
                   width={40}
                   height={40}
-                  className="w-full h-full object-cover"
+                  className="h-full w-full object-contain"
                   priority
                 />
               </div>

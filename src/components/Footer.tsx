@@ -69,7 +69,7 @@ const Footer = () => {
             >
               <div className="w-12 h-12 rounded-lg overflow-hidden shadow-lg">
                 <Image
-                  src="/logo.png"
+                  src="/headshot.jpg"
                   alt="Zaid Rafiq Logo"
                   width={48}
                   height={48}
@@ -85,9 +85,9 @@ const Footer = () => {
             </button>
 
             <p className="text-muted-foreground mb-6 leading-relaxed">
-              React Native specialist focused on production-grade iOS and Android
-              apps, including multi-role suites, store releases, and field-ready
-              integrations.
+              React Native specialist focused on production-grade iOS and
+              Android apps, including multi-role suites, store releases, and
+              field-ready integrations.
             </p>
 
             <div className="flex flex-wrap gap-3">

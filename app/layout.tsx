@@ -72,7 +72,7 @@ export const metadata: Metadata = {
     siteName: "Zaid Rafiq Portfolio",
     images: [
       {
-        url: "/logo.png",
+        url: "/headshot.jpg",
         width: 1200,
         height: 630,
         alt: "Zaid Rafiq Portfolio",
@@ -84,7 +84,7 @@ export const metadata: Metadata = {
     title: "Zaid Rafiq - Senior Mobile Application Developer",
     description:
       "Full-Stack Engineer specializing in building scalable web and mobile applications",
-    images: ["/logo.png"],
+    images: ["/headshot.jpg"],
   },
 };
 

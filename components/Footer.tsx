@@ -61,11 +61,11 @@ const Footer = () => {
             >
               <div className="w-12 h-12 rounded-lg overflow-hidden shadow-lg">
                 <Image
-                  src="/logo.png"
+                  src="/headshot.jpg"
                   alt="Zaid Rafiq Logo"
                   width={48}
                   height={48}
-                  className="w-full h-full object-cover"
+                  className="h-full w-full object-contain"
                 />
               </div>
               <div>
@@ -179,9 +179,7 @@ const Footer = () => {
           className="pt-8 border-t border-border/50 flex flex-col md:flex-row justify-between items-center gap-4"
         >
           <div className="flex items-center gap-2 text-sm text-muted-foreground">
-            <span>
-              Copyright © 2026. All rights reserved by Zaid Rafiq.
-            </span>
+            <span>Copyright © 2026. All rights reserved by Zaid Rafiq.</span>
           </div>
         </motion.div>
       </div>
