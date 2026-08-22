@@ -62,7 +62,7 @@ const Experience = () => {
       company: "The First Sol",
       type: "Full-time",
       location: "Lahore, Pakistan",
-      duration: "Oct 2023 - Nov 2024",
+      duration: "Jan 2023 - Nov 2024",
       startDate: "2023",
       description:
         "Contributing to the development of a React Native image generation app with Supabase storage. Managing intricate UI, integrating third-party services, implementing code cleaning practices, and establishing sound architecture.",
@@ -98,7 +98,7 @@ const Experience = () => {
       company: "Xentro Solutions",
       type: "Full-time",
       location: "Lahore, Pakistan",
-      duration: "Aug 2022 - Sep 2023",
+      duration: "Jan 2022 - Jan 2023",
       startDate: "2022",
       description:
         "Developed applications utilizing Firebase and Firestore for real-time database, authentication, and cloud services. Integrated Google Maps API, implemented Twilio for SMS functionality, and incorporated Realm for offline data storage.",

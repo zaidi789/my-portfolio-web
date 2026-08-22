@@ -35,7 +35,7 @@ const experiences = [
     company: "The First Sol",
     icon: "/icons/supabase.png",
     location: "Lahore, Pakistan",
-    duration: "Oct 2023 - Nov 2024",
+    duration: "Jan 2023 - Nov 2024",
     description:
       "Developed STYLEY image generation app with Supabase, push notifications, payment integrations, and polished UI/UX.",
     achievements: [
@@ -56,7 +56,7 @@ const experiences = [
     company: "Xentro Solutions",
     icon: "/icons/firebase.png",
     location: "Lahore, Pakistan",
-    duration: "Aug 2022 - Sep 2023",
+    duration: "Jan 2022 - Jan 2023",
     description:
       "Developed mobile applications using Firebase, Firestore, Google Maps API, Twilio SMS, and Realm offline storage.",
     achievements: [
